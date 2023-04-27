@@ -50,6 +50,7 @@ function _createFetch () {
 
 class ApiCore implements ApiCoreInterface {
   baseURL = ''
+  _fetch : $Fetch
   // @ts-ignore
   fetchOptions = {
     retry: 0,
@@ -78,7 +79,15 @@ class ApiCore implements ApiCoreInterface {
     onResponseError (ctx: FetchContext) {
     },
   }
-  _fetch = _createFetch.call(this)
+
+  constructor (options: any) {
+    if (!options.baseURL) {
+      throw Error('baseURL is required option')
+    }
+    this.baseURL = options.baseURL
+    this._fetch = _createFetch.call(this)
+
+  }
 
   get (url: string, data: any, config = null) {
     return this.$_fetch(url, {
