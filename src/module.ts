@@ -1,4 +1,4 @@
-import { defineNuxtModule, addPlugin, createResolver, addImports, addTemplate } from '@nuxt/kit'
+import {defineNuxtModule, addPlugin, createResolver, addImports, addTemplate} from '@nuxt/kit'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
@@ -14,7 +14,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     baseUrl: 'https://example.com'
   },
-  setup (options, nuxt) {
+  setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
@@ -22,7 +22,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.build.transpile.push(resolver.resolve('./runtime'))
 
-    const { dst } = addTemplate({
+    const {dst} = addTemplate({
       src: resolver.resolve('./runtime/composables/useApiCore.ts'),
       write: true
     })
@@ -33,3 +33,5 @@ export default defineNuxtModule<ModuleOptions>({
     })
   }
 })
+
+export * from './runtime/types'

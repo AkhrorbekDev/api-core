@@ -36,4 +36,7 @@ type $FetchOptions = FetchOptions & {
 
 type $FetchContext = Omit<FetchContext, 'options'> & { options: $FetchOptions['options'] }
 
-export {$FetchContext, $FetchOptions, ApiCoreInterface}
+declare const useApiCore: () => any
+
+export {$FetchContext, $FetchOptions, ApiCoreInterface, useApiCore}
+export * from './core'
