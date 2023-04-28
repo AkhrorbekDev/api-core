@@ -5,5 +5,6 @@
 </template>
 
 <script setup>
+
 console.log(useApiCore())
 </script>
