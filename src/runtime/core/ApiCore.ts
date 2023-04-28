@@ -85,6 +85,9 @@ class ApiCore implements ApiCoreInterface {
       throw Error('baseURL is required option')
     }
     this.baseURL = options.baseURL
+    if (options.fetchOptions) {
+      this.fetchOptions = options.fetchOptions
+    }
     this._fetch = _createFetch.call(this)
 
   }

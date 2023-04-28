@@ -20,7 +20,6 @@ export default defineNuxtModule<ModuleOptions>({
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'))
 
-
     nuxt.options.build.transpile.push(resolver.resolve('./runtime'))
 
     const { dst } = addTemplate({
