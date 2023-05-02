@@ -33,3 +33,5 @@ export default defineNuxtModule<ModuleOptions>({
     })
   }
 })
+
+export * from './runtime/types'

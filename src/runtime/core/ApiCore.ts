@@ -1,45 +1,11 @@
 // @ts-ignore
 import qs from 'qs'
-import { $Fetch, $fetch, FetchContext, FetchOptions } from 'ofetch'
-import { buildURL } from './helpers/buildUrl'
+import {$Fetch, $fetch, FetchContext, FetchOptions} from 'ofetch'
+import {buildURL} from './helpers/buildUrl'
+import {$FetchContext, ApiCoreInterface} from "../types";
 
-interface ApiCoreInterface {
-  baseURL: string,
-  fetchOptions: $FetchOptions
-  _fetch: $Fetch
 
-  get (url: string, data: any, config: any): Promise<any>
-
-  post (url: string, data: any, config: any): Promise<any>
-
-  put (url: string, data: any, config: any): Promise<any>
-
-  delete (url: string, data: any, config: any): Promise<any>
-
-  head (url: string, data: any, config: any): Promise<any>
-
-  trace (url: string, data: any, config: any): Promise<any>
-
-  connect (url: string, data: any, config: any): Promise<any>
-
-  options (url: string, data: any, config: any): Promise<any>
-
-  config (args: ApiCoreInterface): this
-}
-
-type $FetchOptions = FetchOptions & {
-  options: { [index: string | number | symbol]: any } &
-    {
-      config: {
-        [index: string | number | symbol]: any
-      },
-      paramsSerializer: Function
-    }
-}
-
-type $FetchContext = Omit<FetchContext, 'options'> & { options: $FetchOptions['options'] }
-
-function _createFetch () {
+function _createFetch() {
   return $fetch.create({
     // @ts-ignore
     baseURL: this.baseURL,
@@ -50,11 +16,11 @@ function _createFetch () {
 
 class ApiCore implements ApiCoreInterface {
   baseURL = ''
-  _fetch : $Fetch
+  _fetch: $Fetch
   // @ts-ignore
   fetchOptions = {
     retry: 0,
-    onRequest (ctx: $FetchContext) {
+    onRequest(ctx: $FetchContext) {
       ctx.options.paramsSerializer = (query: any) => {
         return qs.stringify(query, {
           arrayFormat: 'indices',
@@ -72,15 +38,15 @@ class ApiCore implements ApiCoreInterface {
       delete ctx.options.params
     },
 
-    onRequestError (ctx: FetchContext) {
+    onRequestError(ctx: FetchContext) {
     },
-    onResponse (ctx: FetchContext) {
+    onResponse(ctx: FetchContext) {
     },
-    onResponseError (ctx: FetchContext) {
+    onResponseError(ctx: FetchContext) {
     },
   }
 
-  constructor (options: any) {
+  constructor(options: any) {
     if (!options.baseURL) {
       throw Error('baseURL is required option')
     }
@@ -92,7 +58,7 @@ class ApiCore implements ApiCoreInterface {
 
   }
 
-  get (url: string, data: any, config = null) {
+  get(url: string, data: any, config = null) {
     return this.$_fetch(url, {
       method: 'get',
       ...data,
@@ -100,7 +66,7 @@ class ApiCore implements ApiCoreInterface {
     })
   }
 
-  post (url: string, data: any, config = null) {
+  post(url: string, data: any, config = null) {
     return this.$_fetch(url, {
       body: data.data,
       method: 'post',
@@ -109,7 +75,7 @@ class ApiCore implements ApiCoreInterface {
     })
   }
 
-  delete (url: string, data: any, config = null) {
+  delete(url: string, data: any, config = null) {
     return this.$_fetch(url, {
       body: data.data,
       method: 'delete',
@@ -117,7 +83,7 @@ class ApiCore implements ApiCoreInterface {
     })
   }
 
-  put (url: string, data: any, config = null) {
+  put(url: string, data: any, config = null) {
     return this.$_fetch(url, {
       body: data.data,
       method: 'put',
@@ -125,7 +91,7 @@ class ApiCore implements ApiCoreInterface {
     })
   }
 
-  head (url: string, data: any, config = null) {
+  head(url: string, data: any, config = null) {
     return this.$_fetch(url, {
       body: data.data,
       method: 'head',
@@ -133,7 +99,7 @@ class ApiCore implements ApiCoreInterface {
     })
   }
 
-  connect (url: string, data: any, config = null) {
+  connect(url: string, data: any, config = null) {
     return this.$_fetch(url, {
       body: data.data,
       method: 'connect',
@@ -141,7 +107,7 @@ class ApiCore implements ApiCoreInterface {
     })
   }
 
-  options (url: string, data: any, config = null) {
+  options(url: string, data: any, config = null) {
     return this.$_fetch(url, {
       body: data.data,
       method: 'options',
@@ -149,7 +115,7 @@ class ApiCore implements ApiCoreInterface {
     })
   }
 
-  trace (url: string, data: any, config = null) {
+  trace(url: string, data: any, config = null) {
     return this.$_fetch(url, {
       body: data.data,
       method: 'trace',
@@ -157,7 +123,7 @@ class ApiCore implements ApiCoreInterface {
     })
   }
 
-  $_fetch (url: any, options: FetchOptions & { config: any }) {
+  $_fetch(url: any, options: FetchOptions & { config: any }) {
     return new Promise((resolve, reject) => {
       this._fetch(url, options).then((res: any) => {
         return resolve(res)
@@ -165,7 +131,7 @@ class ApiCore implements ApiCoreInterface {
     })
   }
 
-  config (args: ApiCoreInterface) {
+  config(args: ApiCoreInterface) {
     if (Object.keys(args).length) {
       Object.keys(args).forEach((key) => {
         // @ts-ignore
@@ -177,4 +143,4 @@ class ApiCore implements ApiCoreInterface {
 
 }
 
-export default ApiCore
+export {ApiCore}
