@@ -22,14 +22,14 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.build.transpile.push(resolver.resolve('./runtime'))
 
-    const { dst } = addTemplate({
+    /* const { dst } = addTemplate({
       src: resolver.resolve('./runtime/composables/useApiCore'),
       write: true
-    })
+    }) */
 
     addImports({
       name: 'useApiCore',
-      from: resolver.resolve(dst)
+      from: resolver.resolve('./runtime/composables/useApiCore')
     })
   }
 })
