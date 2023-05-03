@@ -1,6 +1,6 @@
 {
   "name": "api-core-fetch",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "api-core",
   "repository": "AkhrorbekDev/api-core",
   "license": "MIT",
@@ -41,7 +41,7 @@
     "@types/node": "^18",
     "changelogen": "^0.5.3",
     "eslint": "^8.38.0",
-    "nuxt": "^3.4.2",
+    "nuxt": "^3.4.3",
     "vitest": "^0.30.1"
   }
 }
