@@ -1,6 +1,6 @@
 {
   "name": "api-core-fetch",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "api-core",
   "repository": "AkhrorbekDev/api-core",
   "license": "MIT",
@@ -10,6 +10,16 @@
       "types": "./dist/types.d.ts",
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
+    },
+    "./composables/*": {
+      "types": "./dist/runtime/composables/index.d.ts",
+      "import": "./dist/runtime/composables/*",
+      "require": "./dist/runtime/composables/*"
+    },
+    "./core/*": {
+      "types": "./dist/runtime/core/index.d.ts",
+      "import": "./dist/runtime/core/*",
+      "require": "./dist/runtime/core/*"
     }
   },
   "main": "./dist/module.mjs",
