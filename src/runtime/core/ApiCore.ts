@@ -127,6 +127,8 @@ class ApiCore implements ApiCoreInterface {
     return new Promise((resolve, reject) => {
       this._fetch(url, options).then((res: any) => {
         return resolve(res)
+      }).catch((err) => {
+        return reject(err)
       })
     })
   }
