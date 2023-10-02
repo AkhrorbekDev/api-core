@@ -125,7 +125,11 @@ class ApiCore implements ApiCoreInterface {
 
   $_fetch(url: any, options: FetchOptions & { config: any }) {
     return new Promise((resolve, reject) => {
-      this._fetch(url, options)
+      this._fetch(url, options).then((res: any) => {
+        return resolve(res)
+      }).catch((err) => {
+        return reject(err)
+      })
     })
   }
 
