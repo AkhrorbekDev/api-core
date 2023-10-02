@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.0.14
+
+[compare changes](https://undefined/undefined/compare/v1.0.13...v1.0.14)
+
+
+### 🏡 Chore
+
+  - **release:** V1.0.13 (16d929b)
+
+### ❤️  Contributors
+
+- Akhrorbek Nisonboyev ([@AkhrorbekDev](http://github.com/AkhrorbekDev))
+
 ## v1.0.13
 
 [compare changes](https://undefined/undefined/compare/v1.0.12...v1.0.13)
