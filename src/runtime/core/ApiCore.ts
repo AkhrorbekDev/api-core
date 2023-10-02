@@ -1,5 +1,5 @@
 // @ts-ignore
-import qs from 'qs'
+import * as qs from 'qs'
 import {$Fetch, $fetch, FetchContext, FetchOptions} from 'ofetch'
 import {buildURL} from './helpers/buildUrl'
 import {$FetchContext, ApiCoreInterface} from "../types";
@@ -125,9 +125,7 @@ class ApiCore implements ApiCoreInterface {
 
   $_fetch(url: any, options: FetchOptions & { config: any }) {
     return new Promise((resolve, reject) => {
-      this._fetch(url, options).then((res: any) => {
-        return resolve(res)
-      })
+      this._fetch(url, options)
     })
   }
 
